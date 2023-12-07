@@ -36,9 +36,10 @@ public class Main {
         jda.getGatewayIntents();
         jda.awaitReady();
 
+
         guild = jda.getGuildById(guildID);
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new RunnableTask(), 5, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new RunnableTask(), 5, 5, TimeUnit.SECONDS);
     }
 
     static class RunnableTask implements Runnable {
@@ -53,7 +54,7 @@ public class Main {
                 try {
                     InputStream nightBannerStream = Main.class.getClassLoader().getResourceAsStream("IMG_8288.png");
                     Icon nightBannerIcon = Icon.from(nightBannerStream);
-                    guild.getManager().setBanner(nightBannerIcon);
+                    guild.getManager().setBanner(nightBannerIcon).queue();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -64,9 +65,9 @@ public class Main {
             }
             nightBanner = false;
             try {
-                InputStream nightBannerStream = Main.class.getClassLoader().getResourceAsStream("IMG_8288.png");
+                InputStream nightBannerStream = Main.class.getClassLoader().getResourceAsStream("IMG_8287.png");
                 Icon nightBannerIcon = Icon.from(nightBannerStream);
-                guild.getManager().setBanner(nightBannerIcon);
+                guild.getManager().setBanner(nightBannerIcon).queue();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
